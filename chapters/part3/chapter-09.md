@@ -236,7 +236,7 @@ connection.close()
 
 ### SQS (Simple Queue Service)
 
-**SQS** သည် managed message queue service ဖြစ်သည်။ **Standard Queue** (at-least-once, unordered) နှင့် **FIFO Queue** (exactly-once, ordered) ဟူ၍ နှစ်မျိုးရှိသည်။
+**SQS** သည် managed message queue service ဖြစ်သည်။ **Standard Queue** (at-least-once, unordered) နှင့် **FIFO Queue** (ordered per message group, duplicate send suppression within dedup window) ဟူ၍ နှစ်မျိုးရှိသည်။ သို့သော် consumer side တွင် visibility timeout နှင့် retry ကြောင့် duplicate processing ဖြစ်နိုင်သဖြင့် idempotent consumer design သည် မဖြစ်မနေလိုအပ်သည်။
 
 ```
 Producer ──→ [SQS Queue] ──→ Consumer (Lambda / EC2 / ECS)

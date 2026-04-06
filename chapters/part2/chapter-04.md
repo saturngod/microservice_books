@@ -337,10 +337,12 @@ HTTP/2 Solutions:
 HTTP/2 Features:
 ├── Multiplexing      → Single connection ဖြင့် concurrent requests
 ├── Header Compression → HPACK format — header size လျှော့ချ
-├── Server Push       → Client မတောင်းဘဲ resources push
 ├── Binary Protocol   → Text ထက် efficient
-└── Stream Prioritization → Important requests ကို ဦးစားပေး
+├── Stream Prioritization → Important requests ကို ဦးစားပေး
+└── Flow Control      → Slow receiver များအတွက် backpressure ပေးနိုင်
 ```
+
+Server Push ကို HTTP/2 specification တွင် define လုပ်ထားသော်လည်း modern browser ecosystem တွင် support နှင့် adoption နှစ်မျိုးစလုံး နည်းလာသောကြောင့် API design ၏ primary selling point အဖြစ် မယူသင့်ပါ။
 
 ### HTTP/3 (QUIC)
 
@@ -571,6 +573,6 @@ class OrderApiClient:
 2. **Resource Naming** — Nouns (plural) သုံးပါ၊ lowercase-kebab-case ကိုင်ပါ၊ verbs ကို URL တွင် မထည့်ပါ။
 3. **Versioning** — URL path versioning (/api/v1/) သည် ရိုးရှင်းပြီး ကျင့်သုံးအများဆုံးဖြစ်သည်၊ breaking changes ဖြစ်မှ version တိုးပါ။
 4. **Pagination** — Production scale ဆိုပါက offset-based မဟုတ်ဘဲ cursor-based pagination ကို ကိုင်ပါ။
-5. **HTTP/2** — Multiplexing, header compression, server push တို့ဖြင့် performance မြင့်တက်သည်; modern APIs သည် HTTP/2 ကို default ဖြစ်သင့်သည်။
+5. **HTTP/2** — Multiplexing, header compression, flow control တို့ဖြင့် performance နှင့် connection efficiency မြင့်တက်သည်; modern APIs သည် HTTP/2 ကို default ဖြစ်သင့်သည်။
 6. **OpenAPI Contract-First** — Code မရေးမီ spec ရေးခြင်းဖြင့် team ကြား contract တိကျမှုရပြီး SDK auto-generation လုပ်နိုင်သည်။
 7. **Idempotency Keys** — Payment, order creation ကဲ့သို့ critical operations တွင် Idempotency Key ထည့်ပါ — network retry ကြောင့် duplicate operations ဖြစ်ပေါ်ခြင်းကို ကာကွယ်သည်။

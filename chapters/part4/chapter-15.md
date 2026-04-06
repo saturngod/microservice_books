@@ -314,7 +314,7 @@ app.get('/api/large-data', async (req, res) => {
 });
 ```
 
-### HTTP/2 Server Push vs Chunked
+### HTTP/1.1 Chunked vs HTTP/2 Streaming
 
 ```
 HTTP/1.1 Chunked:
@@ -462,7 +462,7 @@ stream.on('error', (error) => {
 ## အဓိကသင်ခန်းစာများ (Key Takeaways)
 
 - **SSE Protocol:** `text/event-stream` MIME type ဖြင့် server မှ client သို့ persistent one-way stream ဖွင့်ပြီး `data:`, `event:`, `id:`, `retry:` fields များ အသုံးပြုသည်
-- **Auto-Reconnect:** SSE ၏ built-in reconnection feature သည် `Last-Event-ID` header ဖြင့် missed messages များကို ရယူနိုင်သောကြောင့် WebSocket ထက် resilient ဖြစ်သည်
+- **Auto-Reconnect:** SSE ၏ built-in reconnection feature သည် `Last-Event-ID` header ဖြင့် reconnect context ကို server သို့ ပြန်ပို့နိုင်သည်; server ဘက်တွင် event replay log သို့မဟုတ် buffer ရှိပါက missed messages များကို ပြန်ပေးနိုင်သောကြောင့် WebSocket ထက် resilient ဖြစ်သည်
 - **Use Case Fit:** Notifications, dashboards, live feeds ကဲ့သို့ server→client only scenarios တွင် SSE သည် WebSocket ထက် implement လုပ်ရ ပိုလွယ်ကူသည်
 - **HTTP/2 Advantage:** HTTP/2 ဖြင့် SSE ကို multiplex လုပ်ခြင်းသည် single connection ပေါ်တွင် multiple streams ဖြစ်နိုင်သောကြောင့် browser connection limits ကို ကျော်လွှားနိုင်သည်
 - **gRPC Streaming:** Service-to-service communication တွင် gRPC server streaming သည် binary efficiency နှင့် type safety ပေးဆောင်သောကြောင့် high-performance scenarios တွင် ပိုသင့်တော်သည်

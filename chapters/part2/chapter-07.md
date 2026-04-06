@@ -49,7 +49,7 @@ API Gateway Responsibilities:
 
 ### Authentication & Authorization
 
-Gateway level တွင် authentication ပြုလုပ်ခြင်းဖြင့် backend services အားလုံးသည် "already authenticated" request များကိုသာ လက်ခံရသည်။
+Gateway level တွင် authentication ကို first line of defense အဖြစ် centralized ပြုလုပ်နိုင်သော်လည်း backend services များသည် request ကို "already authenticated" ဟု blind trust မလုပ်သင့်ပါ။ Downstream service တစ်ခုချင်းသည် JWT claims, signed headers, mTLS identity, နှင့် authorization rules များကို context အလိုက် verify ပြန်လုပ်ရသည်။
 
 ```python
 # API Gateway authentication middleware (Python/Flask ဥပမာ)
@@ -133,15 +133,15 @@ if not limiter.allow_request("user_123"):
 
 ```
 SSL Termination Flow:
-┌──────────┐  HTTPS   ┌──────────────┐  HTTP   ┌──────────────┐
-│  Client  │ ───────> │  API Gateway │ ──────> │  Service A   │
-│ (Browser)│  :443    │  (TLS Term)  │  :8080  │  (Internal)  │
+┌──────────┐  HTTPS   ┌──────────────┐ HTTPS/mTLS ┌──────────────┐
+│  Client  │ ───────> │  API Gateway │ ─────────> │  Service A   │
+│ (Browser)│  :443    │  (TLS Term)  │   :8443    │  (Internal)  │
 └──────────┘          └──────────────┘         └──────────────┘
 
 Client နှင့် Gateway ကြားတွင် HTTPS (encrypted)
-Gateway နှင့် Internal Service ကြားတွင် HTTP (unencrypted — faster)
-Internal network ကို trust ပြုလုပ်သော model ဖြစ်သည်
-(Service Mesh သုံးပါက internal traffic ကိုလည်း mTLS ဖြင့် encrypt ပြုလုပ်နိုင်သည်)
+Gateway နှင့် Internal Service ကြားတွင် TLS re-encryption သို့မဟုတ် mTLS ဖြင့် encrypt ပြုလုပ်သည်
+Zero-trust production environment တွင် internal network ကို trusted zone ဟု မယူဆသင့်
+(Service Mesh သုံးပါက internal traffic ကို auto-mTLS ဖြင့် enforce ပြုလုပ်နိုင်သည်)
 ```
 
 ### Request Routing

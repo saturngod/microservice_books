@@ -498,7 +498,7 @@ Resource Access:
 | Decision | ရွေးချယ်ချက် | Rationale |
 |---|---|---|
 | Token format | JWT (short-lived) + Opaque (refresh) | Stateless validation + Revocability |
-| PKCE | Required for all flows | Prevent code interception |
+| PKCE | Required for Authorization Code flow and all public clients | Prevent code interception |
 | Session storage | Redis | Immediate revocation capability |
 | Key algorithm | RS256 (asymmetric) | Resource services need only public key |
 | Multi-tenant | Row-Level Security | Balance isolation vs operational simplicity |
