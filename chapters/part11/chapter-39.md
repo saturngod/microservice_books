@@ -27,8 +27,8 @@ Netflix သည် ကမ္ဘာပေါ်ရှိ အကြီးဆုံ�
 | Daily Active Users (DAU) | ၂၀၀ မီလီယံ |
 | Concurrent Streams | ၈၀ မီလီယံ (peak) |
 | Video Startup Time | ၂ second အောက် |
-| Video Upload | ၅၀၀ hours/minute |
-| Content Library | ၁ PB+ |
+| Video Upload | ၅၀၀ hours/day |
+| Content Library | ၅ PB+ |
 | CDN Cache Hit Ratio | ၉၅%+ |
 | Global Availability | ၁၉၀+ နိုင်ငံ |
 
@@ -43,9 +43,8 @@ CDN edge servers needed:
   400 Tbps ÷ 10 Gbps per server = 40,000 CDN servers
 
 Storage:
-  1 hour video = 10 GB (multi-resolution)
-  500 hours uploaded/min × 60 × 24 = 720,000 hours/day
-  720,000 × 10 GB = 7.2 PB/day (new uploads)
+  1 hour encoded video = 10 GB (multi-resolution average)
+  500 hours uploaded/day × 10 GB = 5 TB/day (new encoded content)
   Long-tail catalog: 5 PB total
 ```
 
@@ -68,25 +67,25 @@ Storage:
 - Search index update ပြုလုပ်သည်
 - Database: PostgreSQL + Elasticsearch
 
-### ₄. Playback Service
+### ၄. Playback Service
 - Stream URL generation ပြုလုပ်သည်
 - DRM license request handle ပြုလုပ်သည်
 - CDN redirect ပြုလုပ်သည်
 
-### ₅. Recommendation Service
+### ၅. Recommendation Service
 - Personalized recommendation generate ပြုလုပ်သည်
 - Collaborative filtering + NLP model
 - Real-time + batch pipeline
 
-### ₆. Search Service
+### ၆. Search Service
 - Full-text search ပြုလုပ်သည်
 - Elasticsearch-based
 
-### ₇. Notification Service
+### ၇. Notification Service
 - New content alerts ပေးပို့သည်
 - Reminder notifications
 
-### ₈. Billing Service
+### ၈. Billing Service
 - Subscription management
 - Payment processing
 
@@ -274,7 +273,7 @@ Playback Service → Redis (write-through):
   (TTL: 180 days)
 
 On next open:
-GET /playback/position?user_id=u123&content_id=movie_456
+GET /playback/position?user_id=u123&profile_id=profile_1&content_id=movie_456
 → Returns: {position: 2700, percentage: 45}
 ```
 
@@ -448,16 +447,17 @@ APPLICATION TIER:
 │ Service  │ │ Service  │ │ Service  │ │ Service  │
 └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘
      │             │            │             │
-     └─────────────▼────────────┘             │
-              ┌──────────┐                    │
-              │PostgreSQL│              ┌──────────┐
-              │ (metadata│              │Elasticsrch│
-              └──────────┘              └──────────┘
-     ┌──────────────────────────────────────┐
-     │          REDIS CLUSTER               │
-     │  (Sessions, Positions, Rec Cache)    │
-     └──────────────────────────────────────┘
+     ▼             └──────┬─────┘             ▼
+┌────────────┐            ▼             ┌──────────────┐
+│ PostgreSQL │  ┌────────────────────┐ │ Elasticsearch│
+│ (metadata) │  │   REDIS CLUSTER    │ │ (search idx) │
+└────────────┘  │ (sessions,         │ └──────────────┘
+                │  positions,        │
+                │  rec cache)        │
+                └────────────────────┘
 ```
+
+**မှတ်ချက်:** PostgreSQL သည် Metadata Service အတွက်သာ ဖြစ်သည်။ Search Service သည် Elasticsearch index ကို read လုပ်ပြီး Playback/Recommendation state များကို Redis တွင် သိမ်းဆည်းထားသည်။
 
 ### Video Playback Data Flow
 
