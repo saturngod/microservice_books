@@ -17,19 +17,19 @@ REST/HTTP/1.1 (JSON):
 └── Schema validation      → Runtime only
 
 gRPC (Protocol Buffers):
-├── Binary encoding        → 3-10x smaller payload
+├── Binary encoding        → JSON ထက် payload ပိုသေးလေ့ရှိ
 ├── HTTP/2 multiplexing   → Single connection, concurrent streams
 ├── Code generation        → Compile-time type checking
 └── Native streaming       → Built-in streaming support
 
-Benchmark (1000 RPS, simple object):
+Illustrative Comparison (simple object, results vary by workload):
 ┌───────────────────┬──────────────┬───────────────┬──────────────┐
 │ Metric            │ REST/JSON    │ gRPC/protobuf │ Improvement  │
 ├───────────────────┼──────────────┼───────────────┼──────────────┤
-│ Latency (p99)     │ 45ms         │ 12ms          │ ~3.7x faster │
-│ Throughput        │ 2,000 RPS    │ 8,500 RPS     │ ~4.25x more  │
-│ Payload size      │ 1,200 bytes  │ 280 bytes     │ ~4.3x smaller│
-│ CPU usage         │ 100%         │ 35%           │ ~2.9x less   │
+│ Latency (p99)     │ ~45ms        │ ~12ms         │ ~3-4x faster │
+│ Throughput        │ ~2,000 RPS   │ ~8,500 RPS    │ ~4x more     │
+│ Payload size      │ ~1,200 bytes │ ~280 bytes    │ ~4x smaller  │
+│ CPU usage         │ Baseline     │ ~35%          │ ~2-3x less   │
 └───────────────────┴──────────────┴───────────────┴──────────────┘
 ```
 
@@ -501,8 +501,8 @@ message OrderV1 {
 
 ## အဓိကသင်ခန်းစာများ (Key Takeaways)
 
-1. **gRPC** သည် HTTP/2 + Protocol Buffers ဖြင့် REST ထက် 3-4 ဆ performance မြင့်ကာ internal microservice communication အတွက် ကောင်းမွန်သောရွေးချယ်မှုဖြစ်သည်။
-2. **Protocol Buffers** သည် strongly-typed, binary serialization format ဖြစ်ပြီး compile-time type safety ပေးသည်; JSON ထက် 3-10 ဆ size လျှော့ချနိုင်သည်။
+1. **gRPC** သည် HTTP/2 + Protocol Buffers ကို အသုံးပြုသောကြောင့် internal microservice communication တွင် REST/JSON ထက် latency, payload size, CPU efficiency များတွင် ပိုကောင်းလေ့ရှိပြီး performance-critical workloads အတွက် ကောင်းမွန်သောရွေးချယ်မှုဖြစ်သည်။
+2. **Protocol Buffers** သည် strongly-typed, binary serialization format ဖြစ်ပြီး compile-time type safety ပေးသည်; JSON ထက် payload size သိသိသာသာ သေးနိုင်သည်။
 3. **RPC Types** — Unary (1→1), Server Streaming (1→N), Client Streaming (N→1), Bidirectional (N→N) တို့ကို use case ပေါ်မူတည်ပြီး ရွေးချယ်ပါ။
 4. **Deadlines** — gRPC calls တိုင်းတွင် timeout/deadline သတ်မှတ်ပါ; cascading failure ကို ကာကွယ်နိုင်သည်။
 5. **Interceptors** သည် logging, authentication, tracing ကဲ့သို့ cross-cutting concerns ကို middleware pattern ဖြင့် ဆောင်ရွက်နိုင်သော gRPC ၏ powerful mechanism ဖြစ်သည်။

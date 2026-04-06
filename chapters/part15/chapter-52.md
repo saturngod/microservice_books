@@ -270,9 +270,9 @@ P → choose A or C (during partition)
 E → choose L (Latency) or C (Consistency) when no partition
 
 Database PACELC profiles:
-- DynamoDB:  PA/EL (high availability, eventual consistency default)
+- DynamoDB:  PA/EL-leaning in many distributed patterns; consistency mode ရွေးနိုင်
 - Cassandra: PA/EL (same)
-- MongoDB:   PC/EC (configurable but defaults to consistency)
+- MongoDB:   deployment-dependent; read/write concerns နှင့် topology ပေါ်မူတည်
 - PostgreSQL: PC/EC (strong consistency, higher latency)
 - Spanner:   PC/EC (global strong consistency, higher latency)
 

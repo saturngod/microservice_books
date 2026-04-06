@@ -408,7 +408,7 @@ Notification Triggers --> Kafka "notification-events"
 | **Tweet Storage** | Cassandra | 17K writes/sec peak, time-series natural ordering, partition by user_id |
 | **Social Graph** | MySQL sharded + Neo4j analytics | MySQL proven at Twitter scale (150B edges), Neo4j for graph traversal queries |
 | **Search** | Elasticsearch with time-based indices | Real-time indexing (< 15s), ILM for old data compression |
-| **Trending** | Kafka Streams sliding window | Real-time velocity calculation, horizontally scalable, exactly-once semantics |
+| **Trending** | Kafka Streams sliding window | Real-time velocity calculation, horizontally scalable, Kafka Streams EOS + idempotent sink design ဖြင့် duplicate risk ကို လျှော့ချနိုင် |
 | **Storage Cost vs Speed** | Redis 4 TB = expensive | 250M users x 16KB = 4TB Redis memory cost justified by < 1ms timeline reads serving 57K QPS |
 | **Trending Window** | 30-second refresh interval | Shorter window (1s) = too noisy, longer window (5min) = too slow for breaking news |
 

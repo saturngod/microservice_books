@@ -9,10 +9,10 @@
 | **Data Model** | Tables, rows, columns | Document, Key-Value, Column-family, Graph | Relational (SQL interface) |
 | **Schema** | Strict schema (schema-on-write) | Flexible schema (schema-on-read) | Strict schema |
 | **Query Language** | SQL (standardized) | Database-specific API / query lang | SQL (ANSI compatible) |
-| **ACID** | အပြည့်အဝ ACID | BASE (Basically Available, Soft state, Eventual consistency) | အပြည့်အဝ ACID + distributed |
+| **ACID** | အပြည့်အဝ ACID | Product ပေါ်မူတည်သည်; BASE-oriented systems များလည်း ရှိသလို ACID transactions ပံ့ပိုးသော systems များလည်း ရှိသည် | အပြည့်အဝ ACID + distributed |
 | **Horizontal Scaling** | ခက်ခဲသည် (sharding manual) | လွယ်ကူသည် (built-in) | မြင့်မားသည် (built-in sharding) |
 | **Joins** | Strong support | Limited / application-level | Strong support |
-| **Consistency** | Strong consistency | Eventual consistency (default) | Strong consistency (distributed) |
+| **Consistency** | Strong consistency | Product ပေါ်မူတည်သည်; eventual, strong, tunable consistency options များ ဖြစ်နိုင်သည် | Strong consistency (distributed) |
 | **Best For** | Structured data, complex queries, transactions | High volume, flexible data, low latency | Global scale + ACID transactions |
 | **ဥပမာများ** | PostgreSQL, MySQL, Oracle | MongoDB, Redis, Cassandra, DynamoDB | CockroachDB, Google Spanner, YugabyteDB |
 
@@ -146,10 +146,10 @@
 |----------|------------------|---------|
 | PostgreSQL | CA | Single node; partitioning မဖြစ်နိုင်ဟု assume |
 | MySQL | CA | PostgreSQL နှင့် တူ |
-| MongoDB | CP (default) | Primary node မှ read; strong consistency |
+| MongoDB | Tunable / deployment-dependent | Default read preference သည် primary ဖြစ်သော်လည်း read concern, replication lag, topology ပေါ်မူတည်သည် |
 | Redis (Cluster) | AP | Split-brain possible |
 | Cassandra | AP | Tunable (QUORUM ဖြင့် CP-like) |
-| DynamoDB | AP (default) / CP | Strongly consistent reads = CP |
+| DynamoDB | Tunable / mode-dependent | Table နှင့် LSI တွင် strongly consistent read option ရှိ; GSI နှင့် multi-Region modes အချို့တွင် eventual consistency ဖြစ်နိုင်သည် |
 | CockroachDB | CP | Raft consensus |
 | HBase | CP | ZooKeeper coordination |
 | Elasticsearch | AP | Eventual consistency |

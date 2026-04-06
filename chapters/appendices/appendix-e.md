@@ -140,10 +140,10 @@ message GetUserResponse {
 | Metric | REST (JSON) | gRPC (Protobuf) | ကွာခြားချက် |
 |--------|------------|----------------|-----------|
 | Payload size (ပုံမှန် object) | ~200 bytes | ~50 bytes | gRPC ~75% ငယ်သည် |
-| Serialization speed | ~1x | ~5-10x faster | Protobuf binary parsing မြန် |
+| Serialization speed | Human-readable but heavier | Binary serialization ကြောင့် မကြာခဏ ပိုမြန် | Workload, schema shape, compression setting ပေါ်မူတည်သည် |
 | Network roundtrips | 1 per request | 1 per request (+ streaming) | Streaming ဖြင့် gRPC သာသည် |
 | HTTP/2 multiplexing | Optional | မဖြစ်မနေ | gRPC က HOL blocking ဖယ်ရှား |
-| Compression | gzip (optional) | Built-in (proto compression) | — |
+| Compression | gzip / brotli (optional) | gzip စသည့် transport compression ကို enable လုပ်နိုင် | Protobuf format ကိုယ်တိုင်သည် compact ဖြစ်သော်လည်း compression feature မဟုတ် |
 
 ---
 

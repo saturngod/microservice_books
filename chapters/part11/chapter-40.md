@@ -24,7 +24,7 @@
 - **High Availability** (အမြဲရရှိနိုင်မှု): **99.99%** uptime ရှိရမည်
 - **Horizontal Scalability** (ရေပြင်ညီ တိုးချဲ့နိုင်မှု): peak time တွင် concurrent streams **၅၀ သန်း** ပံ့ပိုးနိုင်ရမည်
 - **Durability** (ခိုင်မြဲမှု): audio files ဘယ်တော့မှ ပျောက်ဆုံးခြင်းမရှိစေရ
-- **Consistency** (ညီညွတ်မှု): royalty calculation အတွက် stream count exactly-once semantics ရှိရမည်
+- **Consistency** (ညီညွတ်မှု): royalty calculation အတွက် duplicate counting မဖြစ်စေရန် idempotent counting pipeline နှင့် reconciliation process ရှိရမည်
 
 ### Scale Estimation (အတိုင်းအတာ ခန့်မှန်းခြင်း)
 
@@ -297,9 +297,9 @@ Monthly batch job: ClickHouse aggregation --> royalty engine --> ledger DB --> p
 | **Storage Format** | OGG Vorbis + AAC | OGG သည် open format ဖြစ်ပြီး quality/size ratio ကောင်းသည်။ AAC သည် Apple ecosystem compatibility အတွက် မဖြစ်မနေ လိုအပ်သည် |
 | **Cache Strategy** | Redis write-through | Read-heavy (1:100 ratio) workload အတွက် 99%+ cache hit rate ရရှိပြီး write-through ဖြင့် consistency ထိန်းသိမ်းသည် |
 | **Recommendation** | Batch + Near-RT hybrid | Weekly batch (Spark) သည် deep model training ပြုလုပ်နိုင်ပြီး near-real-time (Kafka Streams) သည် skip/save signal ကို instantly reflect လုပ်နိုင်သည် |
-| **Stream Counting** | Exactly-once (Kafka transactions) | Royalty accuracy critical ဖြစ်ပြီး at-least-once ဖြင့်ဆိုပါက artist များအား ငွေပိုပေးမိနိုင်သည် |
+| **Stream Counting** | Kafka transactions + idempotent sink + reconciliation | Royalty accuracy critical ဖြစ်ပြီး duplicate counting risk ကို stream processor တစ်ခုတည်းအပေါ် မထားဘဲ ledger-style reconciliation ဖြင့် ထိန်းသိမ်းရသည် |
 | **Offline Encryption** | AES-256-GCM + license check | DRM compliance နှင့် UX balance — ၃၀ ရက်တစ်ကြိမ် verify သည် piracy ကာကွယ်ပြီး user ကို မထိခိုက်ပါ |
-| **Social Graph** | Neo4j (Graph DB) | Follow relationship traversal (friend-of-friend) အတွက် relational DB ထက် 100x ပိုမြန်သည် |
+| **Social Graph** | Neo4j (Graph DB) | Follow relationship traversal (friend-of-friend) ကဲ့သို့ graph-native queries များတွင် relational DB ထက် ပိုသင့်တော်ပြီး query complexity ကို လျှော့ချနိုင်သည် |
 | **Database Sharding** | User-based (owner_id) | Single shard co-location ဖြင့် cross-shard queries minimize လုပ်နိုင်သည် |
 | **CDN Strategy** | Multi-CDN (CloudFront + Fastly) | Single CDN outage failover + ပိုကောင်းသော geographic coverage |
 

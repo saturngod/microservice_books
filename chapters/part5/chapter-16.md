@@ -462,6 +462,6 @@ Read Model (Queries):         │
 
 - **Database per Service:** Service တစ်ခုချင်းစီ ၎င်း၏ database ကို သီးသန့်ပိုင်ဆိုင်ရမည်ဖြစ်ပြီး other services မှ direct access ကို တားမြစ်ရသည် — API ဖြင့်သာ data ရယူနိုင်ရမည်
 - **Polyglot Persistence:** Relational data တွင် PostgreSQL၊ flexible documents တွင် MongoDB၊ time-series data တွင် InfluxDB၊ graph data တွင် Neo4j ကဲ့သို့ data nature အပေါ်မူတည်၍ optimal database ကို ရွေးချယ်သင့်သည်
-- **Eventual Consistency:** Distributed system တွင် strong consistency ကို guarantee မလုပ်နိုင်ဘဲ eventual consistency ကို accept ပြီး design လုပ်ရသည် — Saga pattern ဖြင့် distributed transactions ကို handle လုပ်နိုင်သည်
+- **Eventual Consistency:** Distributed system တွင် cross-service strong consistency ကို အမြဲမထိန်းနိုင်သဖြင့် eventual consistency ကို accept ပြီး design လုပ်ရသောနေရာများ များသည် — Saga pattern ဖြင့် distributed transactions ကို handle လုပ်နိုင်သည်
 - **API Composition:** Services ကြား data join လုပ်ရာတွင် API gateway level တွင် parallel requests ပေးပြီး data aggregate လုပ်သည် — N+1 problem ကို ရှောင်ရှားရန် data loader pattern သုံးနိုင်သည်
 - **CQRS:** Write operations နှင့် Read operations ကို သီးခြား data models ဖြင့် handle လုပ်ခြင်းသည် performance ကောင်းမွန်ပြီး scale လုပ်ရ ပိုလွယ်ကူသည်

@@ -534,5 +534,5 @@ class MessageOrderingBuffer {
 - **Handshake:** WebSocket connection သည် HTTP Upgrade request ဖြင့် စတင်ပြီး 101 Switching Protocols response ရရှိမှ WebSocket protocol သို့ ကူးပြောင်းသည်
 - **Scale:** Millions of connections ကို handle လုပ်ရန် OS-level tuning၊ sticky sessions၊ နှင့် Redis Pub/Sub pattern များ အသုံးပြုရသည်
 - **Heartbeats:** Ping/Pong mechanism ဖြင့် dead connections ကို detect လုပ်ပြီး presence detection ကို Redis TTL ဖြင့် implement လုပ်နိုင်သည်
-- **Reconnection:** Exponential backoff with jitter strategy ဖြင့် reconnect လုပ်ပြီး sequence numbers ဖြင့် message ordering ကို guarantee လုပ်ရသည်
+- **Reconnection:** Exponential backoff with jitter strategy ဖြင့် reconnect လုပ်ပြီး sequence numbers ဖြင့် missed/duplicate messages ကို detect လုပ်နိုင်သည်; end-to-end ordering guarantee လိုပါက server-side replay logic ထပ်လိုအပ်သည်
 - **Horizontal Scaling:** Redis Pub/Sub ဖြင့် WebSocket servers အကြား message routing လုပ်ဆောင်၍ horizontal scaling ကို enable လုပ်နိုင်သည်

@@ -57,7 +57,7 @@ class CompetingConsumerWorker:
 
 ### Partitioned Consumers Pattern
 
-Kafka partitions ဖြင့် ordering guarantee + parallelism ကို တပြိုင်နက် ရရှိနိုင်သည်။
+Kafka partitions ဖြင့် per-key ordering နှင့် parallelism ကို တပြိုင်နက် ရရှိနိုင်သည်။
 
 ```
 Topic: "user-events" (6 partitions)
@@ -70,7 +70,7 @@ Partition 4: User 5, User 11, User 17, ... → Consumer E
 Partition 5: User 6, User 12, User 18, ... → Consumer F
 
 KEY INSIGHT: Same user's events → Same partition → Same consumer
-→ Per-user ordering is guaranteed!
+→ Same key = same partition ဖြစ်၍ per-user ordering ရရှိ (partition count မပြောင်းသရွေ့)
 → 6 consumers can process in parallel!
 ```
 

@@ -8,7 +8,7 @@
 |------------------------|-----------------|-------------|---------------|------------------|
 | **Protocol** | Custom binary (TCP) / Kafka Protocol | AMQP 0-9-1, MQTT, STOMP | AWS proprietary (HTTPS/REST) | Pulsar binary protocol |
 | **Message Ordering** | Partition အတွင်း ordering အာမခံ | Queue တစ်ခုအတွင်း ordering (single consumer) | Standard: မအာမခံ; FIFO queue: ordering အာမခံ | Partition အတွင်း ordering အာမခံ |
-| **Delivery Guarantees** | At-least-once (default); Exactly-once (transactions သုံးလျှင်) | At-least-once; At-most-once (autoAck) | At-least-once (standard); Exactly-once (FIFO + deduplication) | At-least-once; Effectively-once (idempotent) |
+| **Delivery Guarantees** | At-least-once (default); Exactly-once semantics ကို Kafka transactions + idempotent processing ဖြင့် တည်ဆောက်နိုင် | At-least-once; At-most-once (autoAck) | At-least-once (standard); FIFO တွင် ordered delivery + duplicate send suppression | At-least-once; Effectively-once (idempotent) |
 | **Message Retention** | Time-based သို့မဟုတ် size-based (default 7 days); Log compaction | Consumer ack ပြီးသည့်နောက် ဖျက်သည် (default) | 1 minute – 14 days | Time-based / size-based; Tiered storage (S3) |
 | **Max Throughput** | Very High (millions msg/sec per cluster) | Medium-High (~50K-200K msg/sec) | Medium (SQS has per-queue limits) | Very High (comparable to Kafka) |
 | **Latency** | Low (~1-5ms end-to-end) | Very Low (sub-millisecond possible) | Medium (~10-50ms+) | Low (~5ms) |

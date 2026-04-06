@@ -355,10 +355,10 @@ Advantages over HTTP/2:
 ├── Connection migration         → IP ပြောင်းသော်လည်း session မပျက်
 └── Eliminates TCP HOL blocking  → Per-stream independent delivery
 
-Performance Impact:
-HTTP/1.1  ── 300ms first byte
-HTTP/2    ── 150ms first byte
-HTTP/3    ── 80ms first byte (QUIC 0-RTT)
+Practical Impact:
+HTTP/1.1  ── Multiple connections, TCP HOL blocking
+HTTP/2    ── Multiplexing ဖြင့် connection efficiency ပိုကောင်း
+HTTP/3    ── Loss recovery နှင့် connection migration ပိုကောင်းနိုင်
 ```
 
 ---

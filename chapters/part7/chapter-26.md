@@ -76,7 +76,7 @@ Failover: DNS switch + DB promote (minutes to hours)
 | **Cost** | High (2x resources always running) | Medium (standby cheaper) |
 | **Complexity** | High (conflict resolution) | Medium |
 | **Latency** | Lower (geo-routing) | Higher (single region) |
-| **Use Case** | Global apps, zero-downtime required | Regional apps, cost-sensitive |
+| **Use Case** | Global apps, near-zero downtime target | Regional apps, cost-sensitive |
 
 ### Data Conflict Resolution (Active-Active)
 
@@ -716,7 +716,7 @@ Post-Mortem Checklist:
 
 ## အဓိက အချက်များ (Key Takeaways)
 
-1. **Active-Active** သည် zero-downtime failover ပေးသော်လည်း data conflict resolution ရှုပ်ထွေးပြီး cost မြင့်သည်။ **Active-Passive** သည် simpler ဖြစ်သော်လည်း failover time ပိုကြာသည်
+1. **Active-Active** သည် near-zero downtime failover ကို achieve လုပ်နိုင်သော်လည်း data conflict resolution ရှုပ်ထွေးပြီး cost မြင့်သည်။ **Active-Passive** သည် simpler ဖြစ်သော်လည်း failover time ပိုကြာသည်
 
 2. **Cross-region replication** — async (fast, eventual consistency), sync (strong consistency, slow), semi-sync (balanced) — RPO target အလိုက် ရွေးချယ်သင့်သည်
 

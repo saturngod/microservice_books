@@ -252,7 +252,7 @@ class OutboxPollingPublisher:
 │ Latency              │ 500ms - 5sec     │ Near real-time (<1s) │
 │ DB Load              │ Extra queries    │ WAL ဖတ်ရုံသာ         │
 │ Implementation       │ Simple           │ Complex (infra)      │
-│ Ordering guarantee   │ created_at sort  │ WAL order            │
+│ Ordering basis       │ created_at sort  │ WAL order            │
 │ All DB types         │ ✅ Yes           │ ⚠ Supported DBs only │
 │ Schema dependency    │ outbox table     │ outbox table         │
 └──────────────────────┴──────────────────┴──────────────────────┘
