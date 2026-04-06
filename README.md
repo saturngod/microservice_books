@@ -295,10 +295,10 @@ microservices/
 
 > *အဓိက pattern: REST/gRPC request-response။ Read-heavy, write complexity နည်း။*
 
-**[အခန်း ၂၇: URL Shortener (TinyURL / Bitly)](chapters/part8/chapter-27.md)**
-**[အခန်း ၂၈: Cloud Storage System (Dropbox / Google Drive)](chapters/part8/chapter-28.md)**
-**[အခန်း ၂၉: Authentication & Identity System (Okta / Auth0)](chapters/part8/chapter-29.md)**
-**[အခန်း ၃၀: Search Engine (Google / Elasticsearch-Based)](chapters/part8/chapter-30.md)**
+- **[အခန်း ၂၇: URL Shortener (TinyURL / Bitly)](chapters/part8/chapter-27.md)**
+- **[အခန်း ၂၈: Cloud Storage System (Dropbox / Google Drive)](chapters/part8/chapter-28.md)**
+- **[အခန်း ၂၉: Authentication & Identity System (Okta / Auth0)](chapters/part8/chapter-29.md)**
+- **[အခန်း ၃၀: Search Engine (Google / Elasticsearch-Based)](chapters/part8/chapter-30.md)**
 
 ---
 
@@ -306,11 +306,11 @@ microservices/
 
 > *အဓိက pattern: Async messaging, Saga, Event Sourcing, CQRS။*
 
-**[အခန်း ၃၁: Banking System (ဘဏ်စနစ်)](chapters/part9/chapter-31.md)**
-**[အခန်း ၃၂: Payment Gateway System (Stripe / Razorpay)](chapters/part9/chapter-32.md)**
-**[အခန်း ၃၃: Digital Wallet System (PayPal / Paytm)](chapters/part9/chapter-33.md)**
-**[အခန်း ၃၄: E-Commerce Order System (Amazon)](chapters/part9/chapter-34.md)**
-**[အခန်း ၃၅: Food Delivery System (DoorDash / Uber Eats)](chapters/part9/chapter-35.md)**
+- **[အခန်း ၃၁: Banking System (ဘဏ်စနစ်)](chapters/part9/chapter-31.md)**
+- **[အခန်း ၃၂: Payment Gateway System (Stripe / Razorpay)](chapters/part9/chapter-32.md)**
+- **[အခန်း ၃၃: Digital Wallet System (PayPal / Paytm)](chapters/part9/chapter-33.md)**
+- **[အခန်း ၃၄: E-Commerce Order System (Amazon)](chapters/part9/chapter-34.md)**
+- **[အခန်း ၃၅: Food Delivery System (DoorDash / Uber Eats)](chapters/part9/chapter-35.md)**
 
 ---
 
@@ -318,9 +318,9 @@ microservices/
 
 > *အဓိက pattern: WebSocket, persistent connections, low-latency state sync။*
 
-**[အခန်း ၃၆: Chat & Messaging System (WhatsApp / Slack)](chapters/part10/chapter-36.md)**
-**[အခန်း ၃၇: Stock Trading System (ရှယ်ယာအရောင်းအဝယ်စနစ်)](chapters/part10/chapter-37.md)**
-**[အခန်း ၃၈: Live Sports & Gaming Leaderboard](chapters/part10/chapter-38.md)**
+- **[အခန်း ၃၆: Chat & Messaging System (WhatsApp / Slack)](chapters/part10/chapter-36.md)**
+- **[အခန်း ၃၇: Stock Trading System (ရှယ်ယာအရောင်းအဝယ်စနစ်)](chapters/part10/chapter-37.md)**
+- **[အခန်း ၃၈: Live Sports & Gaming Leaderboard](chapters/part10/chapter-38.md)**
 
 ---
 
@@ -328,9 +328,9 @@ microservices/
 
 > *အဓိက pattern: Async pipelines, CDN, adaptive streaming။*
 
-**[အခန်း ၃၉: Video Streaming System (Netflix)](chapters/part11/chapter-39.md)**
-**[အခန်း ၄၀: Music Streaming System (Spotify)](chapters/part11/chapter-40.md)**
-**[အခန်း ၄၁: Video Upload & Sharing Platform (YouTube)](chapters/part11/chapter-41.md)**
+- **[အခန်း ၃၉: Video Streaming System (Netflix)](chapters/part11/chapter-39.md)**
+- **[အခန်း ၄၀: Music Streaming System (Spotify)](chapters/part11/chapter-40.md)**
+- **[အခန်း ၄၁: Video Upload & Sharing Platform (YouTube)](chapters/part11/chapter-41.md)**
 
 ---
 
@@ -338,8 +338,8 @@ microservices/
 
 > *အဓိက pattern: Hybrid — fan-out on write/read, graph traversal, feed generation။*
 
-**[အခန်း ၄၂: Social Media Feed (Twitter / X)](chapters/part12/chapter-42.md)**
-**[အခန်း ၄၃: Photo Sharing Platform (Instagram)](chapters/part12/chapter-43.md)**
+- **[အခန်း ၄၂: Social Media Feed (Twitter / X)](chapters/part12/chapter-42.md)**
+- **[အခန်း ၄၃: Photo Sharing Platform (Instagram)](chapters/part12/chapter-43.md)**
 
 ---
 
@@ -347,8 +347,8 @@ microservices/
 
 > *အဓိက pattern: Real-time geospatial, event-driven dispatch, ML integration။*
 
-**[အခန်း ၄၄: Ride-Sharing System (Uber / Lyft)](chapters/part13/chapter-44.md)**
-**[အခန်း ၄၅: Maps & Navigation System (Google Maps)](chapters/part13/chapter-45.md)**
+- **[အခန်း ၄၄: Ride-Sharing System (Uber / Lyft)](chapters/part13/chapter-44.md)**
+- **[အခန်း ၄၅: Maps & Navigation System (Google Maps)](chapters/part13/chapter-45.md)**
 
 ---
 
@@ -356,18 +356,18 @@ microservices/
 
 > *အဓိက pattern: ကွဲပြားသည် — scale, latency နှင့် correctness အပေါ် အာရုံစိုက်သည်။*
 
-**[အခန်း ၄၆: Notification System (အကြောင်းကြားစနစ်)](chapters/part14/chapter-46.md)**
-**[အခန်း ၄၇: Ad Serving System (Google Ads / Meta Ads)](chapters/part14/chapter-47.md)**
-**[အခန်း ၄၈: Healthcare System (EMR / Telemedicine)](chapters/part14/chapter-48.md)**
-**[အခန်း ၄၉: Rate Limiter as a Service](chapters/part14/chapter-49.md)**
+- **[အခန်း ၄၆: Notification System (အကြောင်းကြားစနစ်)](chapters/part14/chapter-46.md)**
+- **[အခန်း ၄၇: Ad Serving System (Google Ads / Meta Ads)](chapters/part14/chapter-47.md)**
+- **[အခန်း ၄၈: Healthcare System (EMR / Telemedicine)](chapters/part14/chapter-48.md)**
+- **[အခန်း ၄၉: Rate Limiter as a Service](chapters/part14/chapter-49.md)**
 
 ---
 
 ### အပိုင်း ၁၅: Advanced Topics
 
-**[အခန်း ၅၀: Event-Driven Patterns (Scale ကြီးချိန်)](chapters/part15/chapter-50.md)**
-**[အခန်း ၅၁: Microservices Anti-Patterns (ရှောင်ကြဉ်ရမည့် ပုံစံများ)](chapters/part15/chapter-51.md)**
-**[အခန်း ၅၂: Microservices Interview Playbook (အင်တာဗျူး ပြင်ဆင်ရေး)](chapters/part15/chapter-52.md)**
+- **[အခန်း ၅၀: Event-Driven Patterns (Scale ကြီးချိန်)](chapters/part15/chapter-50.md)**
+- **[အခန်း ၅၁: Microservices Anti-Patterns (ရှောင်ကြဉ်ရမည့် ပုံစံများ)](chapters/part15/chapter-51.md)**
+- **[အခန်း ၅၂: Microservices Interview Playbook (အင်တာဗျူး ပြင်ဆင်ရေး)](chapters/part15/chapter-52.md)**
 
 ---
 
